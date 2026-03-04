@@ -1,8 +1,13 @@
 <?php
 
-//Haal de configuratie op
-require_once 'config.php';
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "storingapp";
 
-//Met behulp van PDO zetten we de connectie op, waarna we met setAttribute de manier van errormeldingen weergeven bepalen.
-$conn = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Database connection failed: " . $e->getMessage());
+}

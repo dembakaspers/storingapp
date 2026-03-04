@@ -3,19 +3,17 @@
 
 <head>
     <title>StoringApp</title>
-    <?php require_once 'resources/views/components/head.php'; ?>
+    <?php require_once __DIR__ . '/resources/views/components/head.php'; ?>
 </head>
 
 <body>
 
-    <?php require_once 'resources/views/components/header.php'; ?>
+    <?php require_once __DIR__ . '/resources/views/components/header.php'; ?>
 
-    <div class="container home">
-
+    <main class="container home">
         <h1>Welkom bij de technische dienst</h1>
-        <img src="public_html/img/logo-big-fill-only.png" alt="logo">
-
-    </div>
+        <img src="/public_html/img/logo-big-fill-only.png" alt="logo">
+    </main>
 
 </body>
 

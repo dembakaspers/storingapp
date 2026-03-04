@@ -1,15 +1,15 @@
-<?php require_once __DIR__.'/../../../config/config.php'; ?>
+<?php require_once __DIR__ . '/../../../config/config.php'; ?>
 <!doctype html>
 <html lang="nl">
 
 <head>
     <title>StoringApp / Meldingen / Nieuw</title>
-    <?php require_once __DIR__.'/../components/head.php'; ?>
+    <?php require_once __DIR__ . '/../components/head.php'; ?>
 </head>
 
 <body>
 
-    <?php require_once __DIR__.'/../components/header.php'; ?>
+    <?php require_once __DIR__ . '/../components/header.php'; ?>
 
     <div class="container">
         <h1>Nieuwe melding</h1>
@@ -21,8 +21,15 @@
                 <input type="text" name="attractie" id="attractie" class="form-input">
             </div>
             <div class="form-group">
-                <label for="type">Type</label>
-                <!-- hier komt een dropdown -->
+                
+                    <!-- hier komt een dropdown -->
+                    <label for="attractie">Wat voor attractie?:</label>
+                    <select name="attractie" id="attractie">
+                        <option value="Wateratractie">Wateratractie</option>
+                        <option value="achtbaan">Achtbaan</option>
+                        <option value="Kinderachtbaan">kinderachtbaan</option>
+                        <option value="CEetplek">Eetplek</option>
+                    </select>
             </div>
             <div class="form-group">
                 <label for="capaciteit">Capaciteit p/uur:</label>
@@ -32,6 +39,13 @@
                 <label for="melder">Naam melder:</label>
                 <input type="text" name="melder" id="melder" class="form-input">
             </div>
+
+                                <label for="">Wat is de prioriteit?:</label>
+                    <select name="Prioriteit" id="prioriteit">
+                        <option value="hoog">hoog</option>
+                        <option value="laag">laag</option>
+
+                    </select>
 
             <input type="submit" value="Verstuur melding">
 
