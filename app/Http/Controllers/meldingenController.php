@@ -1,25 +1,35 @@
 <?php
 
-//Variabelen vullen
+// Variabelen vullen
 $attractie = $_POST['attractie'];
 $capaciteit = $_POST['capaciteit'];
 $melder = $_POST['melder'];
-$type = $_POST['type'] ?? 'Onbekend'; // ❌ fallback if type not sent
+$type = $_POST['type'] ?? 'Onbekend';
+$prioriteit = isset($_POST['prioriteit']) ? 1 : 0;
+$overige_info = $_POST['overige_info'] ?? null;
 
-echo $attractie . " / " . $capaciteit . " / " . $melder . " / " . $type;
-
-//1. Verbinding
+// Verbinding
 require_once '../../../config/conn.php';
 
-//2. Query (capaciteit toegevoegd)
-$query = "INSERT INTO meldingen (attractie, type, capaciteit) VALUES(:attractie, :type, :capaciteit)";
+// Query
+$query = "INSERT INTO meldingen 
+(attractie, type, capaciteit, prioriteit, melder, overige_info) 
+VALUES 
+(:attractie, :type, :capaciteit, :prioriteit, :melder, :overige_info)";
 
-//3. Prepare
+// Prepare
 $statement = $conn->prepare($query);
 
-//4. Execute
+// Execute
 $statement->execute([
     ':attractie' => $attractie,
     ':type' => $type,
-    ':capaciteit' => $capaciteit, // nu wordt capaciteit meegestuurd
+    ':capaciteit' => $capaciteit,
+    ':prioriteit' => $prioriteit,
+    ':melder' => $melder,
+    ':overige_info' => $overige_info
 ]);
+
+// Redirect terug naar overzicht
+header("Location: ../meldingen/index.php");
+exit;
