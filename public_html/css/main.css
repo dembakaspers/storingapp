@@ -170,6 +170,33 @@ label{
     width: 600px;
 }
 
+/* MELDINGEN TABEL OPDRACHT */
+
+.meldingen-tabel {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.meldingen-tabel th,
+.meldingen-tabel td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+/* Header kleur */
+.meldingen-tabel th {
+    background-color: #d3d3d3;
+}
+
+/* Oneven rijen */
+.meldingen-tabel tr:nth-child(odd) {
+    background-color: #ebebeb;
+}
+
+/* Mouse-over */
+.meldingen-tabel tr:hover {
+    background-color: #d3d3d3;
+}
 
 
 

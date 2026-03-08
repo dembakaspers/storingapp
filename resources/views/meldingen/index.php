@@ -16,47 +16,46 @@
         <a href="create.php">Nieuwe melding &gt;</a>
 
         <?php
+        // Eventuele melding tonen
         if (isset($_GET['msg'])) {
             echo "<div class='msg'>" . htmlspecialchars($_GET['msg']) . "</div>";
         }
 
+        // Databaseverbinding
         require_once __DIR__ . '/../../../config/conn.php';
 
+        // SELECT-query
         $sql = "SELECT * FROM meldingen ORDER BY gemeld_op DESC";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
-        <div class="meldingen-container">
+        <table class="meldingen-tabel">
+            <tr>
+                <th>ID</th>
+                <th>Attractie</th>
+                <th>Type</th>
+                <th>Capaciteit</th>
+                <th>Prioriteit</th>
+                <th>Melder</th>
+                <th>Gemeld op</th>
+                <th>Overige info</th>
+            </tr>
+
             <?php foreach ($list as $melding) : ?>
-                <div class="melding">
-                    <h2><?php echo htmlspecialchars($melding['attractie'] ?? 'Onbekend'); ?></h2>
-
-                    <p><span class="label">Type:</span>
-                        <?php echo htmlspecialchars($melding['type'] ?? 'Onbekend'); ?>
-                    </p>
-
-                    <p><span class="label">Capaciteit:</span>
-                        <?php echo htmlspecialchars($melding['capaciteit'] ?? 0); ?> p/uur
-                    </p>
-
-                    <p><span class="label">Melder:</span>
-                        <?php echo htmlspecialchars($melding['melder'] ?? ''); ?>
-                    </p>
-
-                    <p><span class="label">Gemeld op:</span>
-                        <?php echo htmlspecialchars($melding['gemeld_op']); ?>
-                    </p>
-
-                    <?php if (!empty($melding['overige_info'])) : ?>
-                        <p><span class="label">Overige info:</span><br>
-                            <?php echo nl2br(htmlspecialchars($melding['overige_info'])); ?>
-                        </p>
-                    <?php endif; ?>
-                </div>
+                <tr>
+                    <td><?= htmlspecialchars($melding['id']) ?></td>
+                    <td><?= htmlspecialchars($melding['attractie']) ?></td>
+                    <td><?= htmlspecialchars($melding['type']) ?></td>
+                    <td><?= htmlspecialchars($melding['capaciteit']) ?></td>
+                    <td><?= htmlspecialchars($melding['prioriteit']) ?></td>
+                    <td><?= htmlspecialchars($melding['melder']) ?></td>
+                    <td><?= htmlspecialchars($melding['gemeld_op']) ?></td>
+                    <td><?= nl2br(htmlspecialchars($melding['overige_info'])) ?></td>
+                </tr>
             <?php endforeach; ?>
-        </div>
+        </table>
 
     </div>
 
