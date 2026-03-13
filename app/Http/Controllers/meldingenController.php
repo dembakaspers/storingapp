@@ -33,3 +33,18 @@ $statement->execute([
 // Redirect terug naar overzicht
 header("Location: ../meldingen/index.php");
 exit;
+
+foreach($items as $item) 
+{ 
+ echo "<a href=' 
+  detail.php?id={$item['id']}'>…"; 
+} 
+
+$id = $_GET['id']; 
+$query = "SELECT * FROM tabel WHERE id = :id"; 
+$statement = $conn->prepare($query); 
+$statement->execute([":id" => $id]); 
+ 
+$item = $statement->fetch(PDO::FETCH_ASSOC); 
+echo "<h1>{$item['title']}</h1>"; 
+echo "<p>{$item['content']}</p>";

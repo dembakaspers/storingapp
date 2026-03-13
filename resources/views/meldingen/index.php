@@ -41,6 +41,7 @@
                 <th>Melder</th>
                 <th>Gemeld op</th>
                 <th>Overige info</th>
+                <th>aanpassen</th>
             </tr>
 
             <?php foreach ($list as $melding) : ?>
@@ -53,9 +54,13 @@
                     <td><?= htmlspecialchars($melding['melder']) ?></td>
                     <td><?= htmlspecialchars($melding['gemeld_op']) ?></td>
                     <td><?= nl2br(htmlspecialchars($melding['overige_info'])) ?></td>
+                    <td><a href="edit.php?id=<?php echo $melding['id']; ?>">aanpassen</a></td>
+
+                    
                 </tr>
             <?php endforeach; ?>
         </table>
+        
 
     </div>
 
