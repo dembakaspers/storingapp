@@ -1,26 +1,25 @@
 <?php
 
-// Variabelen vullen
-$attractie = $_POST['attractie'];
+// POST-variabelen ophalen (namen komen uit create.php)
+$attractie = $_POST['naam_attractie'];
+$type = $_POST['type_attractie'];
 $capaciteit = $_POST['capaciteit'];
 $melder = $_POST['melder'];
-$type = $_POST['type'] ?? 'Onbekend';
-$prioriteit = isset($_POST['prioriteit']) ? 1 : 0;
+$prioriteit = $_POST['prioriteit'];
 $overige_info = $_POST['overige_info'] ?? null;
 
-// Verbinding
-require_once '../../../config/conn.php';
+// Databaseverbinding
+require_once __DIR__ . '/../../../config/conn.php';
 
-// Query
+// SQL-query
 $query = "INSERT INTO meldingen 
 (attractie, type, capaciteit, prioriteit, melder, overige_info) 
 VALUES 
 (:attractie, :type, :capaciteit, :prioriteit, :melder, :overige_info)";
 
-// Prepare
 $statement = $conn->prepare($query);
 
-// Execute
+// Uitvoeren
 $statement->execute([
     ':attractie' => $attractie,
     ':type' => $type,
@@ -30,21 +29,5 @@ $statement->execute([
     ':overige_info' => $overige_info
 ]);
 
-// Redirect terug naar overzicht
-header("Location: ../meldingen/index.php");
+header("Location: /storingapp/resources/views/meldingen/index.php?msg=Melding+opgeslagen");
 exit;
-
-foreach($items as $item) 
-{ 
- echo "<a href=' 
-  detail.php?id={$item['id']}'>…"; 
-} 
-
-$id = $_GET['id']; 
-$query = "SELECT * FROM tabel WHERE id = :id"; 
-$statement = $conn->prepare($query); 
-$statement->execute([":id" => $id]); 
- 
-$item = $statement->fetch(PDO::FETCH_ASSOC); 
-echo "<h1>{$item['title']}</h1>"; 
-echo "<p>{$item['content']}</p>";

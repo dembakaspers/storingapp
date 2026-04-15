@@ -46,14 +46,14 @@
 
             <?php foreach ($list as $melding) : ?>
                 <tr>
-                    <td><?= htmlspecialchars($melding['id']) ?></td>
-                    <td><?= htmlspecialchars($melding['attractie']) ?></td>
-                    <td><?= htmlspecialchars($melding['type']) ?></td>
-                    <td><?= htmlspecialchars($melding['capaciteit']) ?></td>
-                    <td><?= htmlspecialchars($melding['prioriteit']) ?></td>
-                    <td><?= htmlspecialchars($melding['melder']) ?></td>
-                    <td><?= htmlspecialchars($melding['gemeld_op']) ?></td>
-                    <td><?= nl2br(htmlspecialchars($melding['overige_info'])) ?></td>
+                    <td><?= htmlspecialchars($melding['id'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($melding['attractie'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($melding['type'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($melding['capaciteit'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($melding['prioriteit'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($melding['melder'] ?? '') ?></td>
+                    <td><?= htmlspecialchars($melding['gemeld_op'] ?? '') ?></td>
+                    <td><?= nl2br(htmlspecialchars($melding['overige_info'] ?? '')) ?></td>
                     <td><a href="edit.php?id=<?php echo $melding['id']; ?>">aanpassen</a></td>
 
                     
