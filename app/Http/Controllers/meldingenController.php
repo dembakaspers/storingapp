@@ -1,4 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once __DIR__ . '/../../../config/config.php';
+if (empty($_SESSION['user_id'])) {
+    header('Location: ' . $base_url . '/resources/views/login/index.php');
+    exit;
+}
 
 // POST-variabelen ophalen (namen komen uit create.php)
 $attractie = $_POST['naam_attractie'];

@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . '/../../../config/conn.php';
 require_once __DIR__ . '/../../../config/config.php';
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <header>
@@ -12,7 +13,11 @@ require_once __DIR__ . '/../../../config/config.php';
             <a href="<?php echo $base_url; ?>/resources/views/meldingen/index.php">Meldingen</a>
         </nav>
         <div>
-            <a href="<?php echo $base_url; ?>/resources/views/login/index.php" >Inloggen</a>
+            <?php if (!empty($_SESSION['user_id'])) : ?>
+                <a href="<?php echo $base_url; ?>/logout.php">Uitloggen</a>
+            <?php else : ?>
+                <a href="<?php echo $base_url; ?>/login.php">Inloggen</a>
+            <?php endif; ?>
         </div>
     </div>
 </header>
