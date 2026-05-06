@@ -13,8 +13,8 @@
         <h2>Registreren</h2>
         <form action="<?php echo $base_url; ?>/app/Http/Controllers/registerController.php" method="POST">
             <div class="form-group">
-                <label for="email">E-mailadres:</label>
-                <input type="text" id="text" name="email" required>
+                <label for="user">Gebruikersnaam:</label>
+                <input type="text" id="user" name="user" required>
             </div>
 
             <div class="form-group">
